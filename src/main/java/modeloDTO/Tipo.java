@@ -5,6 +5,7 @@ public class Tipo {
 	private String nombre;
 	private Integer cantidad_personas;
 	private String descripcion;
+	
 	public Integer getId() {
 		return id;
 	}
