@@ -37,5 +37,15 @@ public class Actividad {
 	public void setEdad_min(Integer edad_min) {
 		this.edad_min = edad_min;
 	}
-	
+	public Actividad(Integer id, Zona zona, String nombre, Integer cantidad_max, Integer edad_min) {
+		super();
+		this.id = id;
+		this.zona = zona;
+		this.nombre = nombre;
+		this.cantidad_max = cantidad_max;
+		this.edad_min = edad_min;
+	}
+	public Actividad() {
+		super();
+	}
 }

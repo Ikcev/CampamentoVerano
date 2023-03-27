@@ -30,5 +30,16 @@ public class Tipo {
 		this.descripcion = descripcion;
 	}
 	
+	public Tipo(Integer id, String nombre, Integer cantidad_personas, String descripcion) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.cantidad_personas = cantidad_personas;
+		this.descripcion = descripcion;
+	}
+	public Tipo() {
+		super();
+	}
+	
 	
 }

@@ -11,4 +11,13 @@ public class Limpieza extends Personal {
 		this.zona = zona;
 	}
 
+	public Limpieza(Zona zona) {
+		super();
+		this.zona = zona;
+	}
+
+	public Limpieza() {
+		super();
+	}
+
 }

@@ -33,4 +33,15 @@ public class Grupo {
 		this.clientes = clientes;
 	}
 	
+	public Grupo(Integer id, Monitor monitor, Parcela parcela, ArrayList<Cliente> clientes) {
+		super();
+		this.id = id;
+		this.monitor = monitor;
+		this.parcela = parcela;
+		this.clientes = clientes;
+	}
+	public Grupo() {
+		super();
+	}
+	
 }

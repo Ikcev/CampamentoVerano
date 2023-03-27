@@ -16,5 +16,13 @@ public class Zona {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public Zona(Integer id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+	public Zona() {
+		super();
+	}
 	
 }

@@ -33,4 +33,15 @@ public class Reserva {
 		this.fecha_salida = fecha_salida;
 	}
 	
+	public Reserva(Parcela parcela, Cliente cliente, Date fecha_ingreso, Date fecha_salida) {
+		super();
+		this.parcela = parcela;
+		this.cliente = cliente;
+		this.fecha_ingreso = fecha_ingreso;
+		this.fecha_salida = fecha_salida;
+	}
+	public Reserva() {
+		super();
+	}
+	
 }

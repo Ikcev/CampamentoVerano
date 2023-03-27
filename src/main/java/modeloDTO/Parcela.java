@@ -52,5 +52,19 @@ public class Parcela {
 		this.cantidadMin = cantidadMin;
 	}
 	
-
+	public Parcela(Integer id, Zona zona, Tipo tipo, Integer grupo, Boolean limpia, Integer cantidadMax,
+			Integer cantidadMin) {
+		super();
+		this.id = id;
+		this.zona = zona;
+		this.tipo = tipo;
+		this.grupo = grupo;
+		this.limpia = limpia;
+		this.cantidadMax = cantidadMax;
+		this.cantidadMin = cantidadMin;
+	}
+	public Parcela() {
+		super();
+	}
+	
 }
