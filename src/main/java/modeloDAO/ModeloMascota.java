@@ -46,4 +46,26 @@ public class ModeloMascota extends Conector{
 		
 		return false;
 	}
+	
+	public boolean modificarMascota(Mascota mascota) {
+		
+		String st = "UPDATE mascotas SET nombre = ?, num_chip = ?, raza = ? WHERE id = ?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setString(1, mascota.getNombre());
+			pst.setInt(2, mascota.getNumChip());
+			pst.setString(3, mascota.getRaza());
+			pst.setInt(4, mascota.getId());
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
