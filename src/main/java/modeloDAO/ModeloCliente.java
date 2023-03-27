@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modeloDTO.Cliente;
 
@@ -104,6 +105,29 @@ public class ModeloCliente extends Conector{
 			cliente.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
 			
 			return cliente;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public ArrayList<Cliente> getAllClientes() {
+		
+		ArrayList<Cliente> clientes = new ArrayList<>();
+		String st = "SELECT * FROM clientes";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()) {
+				clientes.add(getCliente(rs.getInt("id")));
+			}
+			
+			return clientes;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
