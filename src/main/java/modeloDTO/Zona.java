@@ -3,7 +3,6 @@ package modeloDTO;
 public class Zona {
 	private Integer id;
 	private String nombre;
-	private Limpieza limpiador;
 	
 	public Integer getId() {
 		return id;
@@ -16,12 +15,6 @@ public class Zona {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	public Limpieza getLimpiador() {
-		return limpiador;
-	}
-	public void setLimpiador(Limpieza limpiador) {
-		this.limpiador = limpiador;
 	}
 	
 }
