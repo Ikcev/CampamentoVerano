@@ -27,4 +27,23 @@ public class ModeloMascota extends Conector{
 		
 		return false;
 	}
+	
+	public boolean eliminarMascota(int id) {
+		
+		String st = "DELETE FROM mascotas WHERE id = ?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
