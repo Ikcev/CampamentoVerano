@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import modeloDTO.Cliente;
 
 public class ModeloCliente extends Conector{
+	
 	public boolean insertarCliente(Cliente cliente) {
 
 		String st = "INSERT INTO clientes (nombre, apellido, dni, email, contrasena, telefono, fecha_nacimiento) VALUES (?,?,?,?,?,?,?)";
@@ -30,6 +31,25 @@ public class ModeloCliente extends Conector{
 			e.printStackTrace();
 		}
 
+		return false;
+	}
+	
+	public boolean eliminarCliente(int id) {
+		
+		String st = "DELETE FROM clientes WHERE id = ?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 }
