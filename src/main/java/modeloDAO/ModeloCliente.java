@@ -2,6 +2,7 @@ package modeloDAO;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import modeloDTO.Cliente;
@@ -79,5 +80,35 @@ public class ModeloCliente extends Conector{
 		}
 		
 		return false;
+	}
+	
+	public Cliente getCliente(int id) {
+		
+		Cliente cliente = new Cliente();
+		String st = "SELECT * FROM clientes WHERE id = ?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			cliente.setId(rs.getInt("id"));
+			cliente.setNombre(rs.getString("nombre"));
+			cliente.setApellido(rs.getString("apellido"));
+			cliente.setEmail(rs.getString("email"));
+			cliente.setContrasena(rs.getString("email"));
+			cliente.setTelefono(rs.getInt("telefono"));
+			cliente.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+			
+			return cliente;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }
