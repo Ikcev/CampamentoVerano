@@ -14,8 +14,8 @@ public class ModeloParcela extends Conector {
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 
-			pst.setString(1, new Zona(parcela.getZona()));
-			pst.setString(2, parcela.getTipo());
+			pst.setInt(1, parcela.getZona().getId());
+			pst.setInt(2, parcela.getTipo().getId());
 			pst.setInt(3, parcela.getGrupo());
 			pst.setBoolean(4, parcela.getLimpia());
 			pst.setInt(5, parcela.getCantidadMax());
