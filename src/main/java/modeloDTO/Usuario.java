@@ -1,5 +1,6 @@
 package modeloDTO;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Usuario {
@@ -11,6 +12,7 @@ public class Usuario {
 	private String contrasena = "1234";
 	private int telefono;
 	private Date fechaNacimiento;
+	private ArrayList<Vehiculo> vehiculos = new ArrayList<>();
 	
 	public int getId() {
 		return id;
@@ -59,5 +61,11 @@ public class Usuario {
 	}
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+	public ArrayList<Vehiculo> getVehiculos() {
+		return vehiculos;
+	}
+	public void agregarVehiculo(Vehiculo vehiculo) {
+		vehiculos.add(vehiculo);
 	}
 }
