@@ -5,7 +5,7 @@ public class Parcela {
 	private Zona zona;
 	private Tipo tipo;
 	private int grupo;
-	private Boolean limpia;
+	private boolean limpia;
 	private final int cantidadMax = 10;
 	private final int cantidadMin = 30;
 	
@@ -33,10 +33,10 @@ public class Parcela {
 	public void setGrupo(int grupo) {
 		this.grupo = grupo;
 	}
-	public Boolean getLimpia() {
+	public boolean getLimpia() {
 		return limpia;
 	}
-	public void setLimpia(Boolean limpia) {
+	public void setLimpia(boolean limpia) {
 		this.limpia = limpia;
 	}
 	public int getCantidadMax() {
