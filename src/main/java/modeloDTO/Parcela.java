@@ -4,7 +4,7 @@ public class Parcela {
 	private int id;
 	private Zona zona;
 	private Tipo tipo;
-	private int grupo;
+	private Grupo grupo;
 	private boolean limpia;
 	private final int cantidadMax = 10;
 	private final int cantidadMin = 30;
@@ -27,10 +27,10 @@ public class Parcela {
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
-	public int getGrupo() {
+	public Grupo getGrupo() {
 		return grupo;
 	}
-	public void setGrupo(int grupo) {
+	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
 	}
 	public boolean getLimpia() {
