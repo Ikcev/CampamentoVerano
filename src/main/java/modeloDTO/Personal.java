@@ -1,5 +1,13 @@
 package modeloDTO;
 
-public abstract class Personal extends Usuario{
-	
+public class Personal extends Usuario{
+	private int director;
+
+	public int getDirector() {
+		return director;
+	}
+
+	public void setDirector(int director) {
+		this.director = director;
+	}
 }
