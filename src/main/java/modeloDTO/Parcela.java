@@ -6,8 +6,6 @@ public class Parcela {
 	private Tipo tipo;
 	private Grupo grupo;
 	private boolean limpia;
-	private final int cantidadMax = 10;
-	private final int cantidadMin = 30;
 	
 	public int getId() {
 		return id;
@@ -38,11 +36,5 @@ public class Parcela {
 	}
 	public void setLimpia(boolean limpia) {
 		this.limpia = limpia;
-	}
-	public int getCantidadMax() {
-		return cantidadMax;
-	}
-	public int getCantidadMin() {
-		return cantidadMin;
 	}
 }
