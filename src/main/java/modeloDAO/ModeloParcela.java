@@ -27,7 +27,7 @@ public class ModeloParcela extends Conector{
 		return false;
 	}
 	
-	public boolean eliminarZona(int id) {
+	public boolean eliminarParcela(int id) {
 		String st = "DELETE FROM parcelas WHERE id = ?";
 		
 		try {
@@ -45,5 +45,25 @@ public class ModeloParcela extends Conector{
 		return false;
 	}
 	
-	
+	public boolean modificarParcela(Parcela parcela) {
+		String st = "UPDATE parcelas SET id_tipo = ?, id_zona = ?, id_grupo = ?, limpia = ? WHERE id = ?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, parcela.getTipo().getId());
+			pst.setInt(2, parcela.getZona().getId());
+			pst.setInt(3, parcela.getGrupo().getId());
+			pst.setBoolean(4, parcela.getLimpia());
+			pst.setInt(5, parcela.getId());
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
