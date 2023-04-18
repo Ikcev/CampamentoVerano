@@ -1,14 +1,16 @@
 package modeloDTO;
 
 public class Tipo {
-	private Integer id;
+	private int id;
 	private String nombre;
-	private Integer cantidad_personas;
+	private int cantidad_personas;
 	private String descripcion;
-	public Integer getId() {
+	
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -17,10 +19,10 @@ public class Tipo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Integer getCantidad_personas() {
+	public int getCantidad_personas() {
 		return cantidad_personas;
 	}
-	public void setCantidad_personas(Integer cantidad_personas) {
+	public void setCantidad_personas(int cantidad_personas) {
 		this.cantidad_personas = cantidad_personas;
 	}
 	public String getDescripcion() {
@@ -29,6 +31,4 @@ public class Tipo {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
 }
