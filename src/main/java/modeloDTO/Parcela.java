@@ -1,18 +1,18 @@
 package modeloDTO;
 
 public class Parcela {
-	private Integer id;
+	private int id;
 	private Zona zona;
 	private Tipo tipo;
-	private Integer grupo;
+	private int grupo;
 	private Boolean limpia;
-	private Integer cantidadMax;
-	private Integer cantidadMin;
+	private final int cantidadMax = 10;
+	private final int cantidadMin = 30;
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public Zona getZona() {
@@ -27,10 +27,10 @@ public class Parcela {
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
-	public Integer getGrupo() {
+	public int getGrupo() {
 		return grupo;
 	}
-	public void setGrupo(Integer grupo) {
+	public void setGrupo(int grupo) {
 		this.grupo = grupo;
 	}
 	public Boolean getLimpia() {
@@ -39,18 +39,10 @@ public class Parcela {
 	public void setLimpia(Boolean limpia) {
 		this.limpia = limpia;
 	}
-	public Integer getCantidadMax() {
+	public int getCantidadMax() {
 		return cantidadMax;
 	}
-	public void setCantidadMax(Integer cantidadMax) {
-		this.cantidadMax = cantidadMax;
-	}
-	public Integer getCantidadMin() {
+	public int getCantidadMin() {
 		return cantidadMin;
 	}
-	public void setCantidadMin(Integer cantidadMin) {
-		this.cantidadMin = cantidadMin;
-	}
-	
-
 }
