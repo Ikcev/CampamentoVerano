@@ -1,7 +1,9 @@
 package modeloDAO;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modeloDTO.Actividad;
 
@@ -65,5 +67,62 @@ public class ModeloActividad extends Conector{
 		}
 		
 		return false;
+	}
+	
+	public Actividad getActividad(int id) {
+		String st = "SELECT * FROM actividades WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			Actividad actividad = rellenarActividad(rs);
+			
+			return actividad;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	private Actividad rellenarActividad(ResultSet rs) throws SQLException {
+		ModeloZona modeloZona = new ModeloZona();
+		modeloZona.conectar();
+		
+		Actividad actividad = new Actividad();
+		
+		actividad.setId(rs.getInt("id"));
+		actividad.setZona(modeloZona.getZona(rs.getInt("id_zona")));
+		actividad.setNombre(rs.getString("nombre"));
+		actividad.setCantidad_max(rs.getInt("cantidad_max"));
+		actividad.setEdad_min(rs.getInt("edad_min"));
+		return actividad;
+	}
+	
+	public ArrayList<Actividad> getAllActividades() {
+		String st = "SELECT * FROM actividades";
+		ArrayList<Actividad> actividades = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				actividades.add(rellenarActividad(rs));
+			}
+			
+			return actividades;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }
