@@ -1,9 +1,11 @@
 package modeloDAO;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import modeloDTO.Parcela;
+import modeloDTO.Tipo;
 
 public class ModeloParcela extends Conector{
 	public boolean insertarParcela(Parcela parcela) {
@@ -65,5 +67,26 @@ public class ModeloParcela extends Conector{
 		}
 		
 		return false;
+	}
+
+	public Parcela getParcela(int id) {
+		String st = "SELECT * FROM parcelas WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			ModeloTipo modeloTipo = new ModeloTipo();
+			modeloTipo.conectar();
+			
+			Tipo tipo = modeloTipo.getTipo(rs.getInt("id_tipo"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }
