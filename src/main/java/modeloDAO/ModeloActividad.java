@@ -44,4 +44,26 @@ public class ModeloActividad extends Conector{
 		
 		return false;
 	}
+	
+	public boolean modificarActividad(Actividad actividad) {
+		String st = "UPDATE actividades SET id_zona=?,nombre=?,cantidad_max=?,edad_min=? WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, actividad.getZona().getId());
+			pst.setString(2, actividad.getNombre());
+			pst.setInt(3, actividad.getCantidad_max());
+			pst.setInt(4, actividad.getEdad_min());
+			pst.setInt(5, actividad.getId());
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
