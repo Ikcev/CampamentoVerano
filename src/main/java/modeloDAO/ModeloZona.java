@@ -3,6 +3,7 @@ package modeloDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modeloDTO.Zona;
 
@@ -91,5 +92,22 @@ public class ModeloZona extends Conector{
 		return zona;
 	}
 	
-	
+	public ArrayList<Zona> getAllZonas() {
+		String st = "SELECT * FROM zonas";
+		ArrayList<Zona> zonas = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				zonas.add(rellenarZona(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }
