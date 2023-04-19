@@ -3,6 +3,7 @@ package modeloDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modeloDTO.Tipo;
 
@@ -77,14 +78,39 @@ public class ModeloTipo extends Conector{
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			
-			Tipo tipo = new Tipo();
-			
-			tipo.setId(rs.getInt("id"));
-			tipo.setNombre(rs.getString("nombre"));
-			tipo.setCantidad_personas(rs.getInt("cantidad_personas"));
-			tipo.setDescripcion(rs.getString("descripcion"));
+			Tipo tipo = rellenarTipo(rs);
 			
 			return tipo;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	private Tipo rellenarTipo(ResultSet rs) throws SQLException {
+		Tipo tipo = new Tipo();
+		
+		tipo.setId(rs.getInt("id"));
+		tipo.setNombre(rs.getString("nombre"));
+		tipo.setCantidad_personas(rs.getInt("cantidad_personas"));
+		tipo.setDescripcion(rs.getString("descripcion"));
+		return tipo;
+	}
+	
+	public ArrayList<Tipo> getAllTipos() {
+		String st = "SELECT * FROM tipos";
+		ArrayList<Tipo> tipos = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				tipos.add(rellenarTipo(rs));
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
