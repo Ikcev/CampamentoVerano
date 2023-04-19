@@ -1,6 +1,7 @@
 package modeloDAO;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import modeloDTO.Zona;
@@ -59,4 +60,36 @@ public class ModeloZona extends Conector{
 		
 		return false;
 	}
+	
+	public Zona getZona(int id) {
+		String st = "SELECT * FROM zonas WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			Zona zona = rellenarZona(rs);
+			
+			return zona;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	private Zona rellenarZona(ResultSet rs) throws SQLException {
+		Zona zona = new Zona();
+		
+		zona.setId(rs.getInt("id"));
+		zona.setNombre(rs.getString("nombre"));
+		return zona;
+	}
+	
+	
 }
