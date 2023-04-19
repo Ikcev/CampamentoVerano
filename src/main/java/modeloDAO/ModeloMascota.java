@@ -3,6 +3,7 @@ package modeloDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modeloDTO.Mascota;
 
@@ -82,14 +83,40 @@ public class ModeloMascota extends Conector{
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			
-			Mascota mascota = new Mascota();
-			
-			mascota.setId(rs.getInt("id"));
-			mascota.setNombre(rs.getString("nombre"));
-			mascota.setNumChip(rs.getInt("num_chip"));
-			mascota.setRaza(rs.getString("raza"));
+			Mascota mascota = rellenarMascota(rs);
 			
 			return mascota;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	private Mascota rellenarMascota(ResultSet rs) throws SQLException {
+		Mascota mascota = new Mascota();
+		
+		mascota.setId(rs.getInt("id"));
+		mascota.setNombre(rs.getString("nombre"));
+		mascota.setNumChip(rs.getInt("num_chip"));
+		mascota.setRaza(rs.getString("raza"));
+		return mascota;
+	}
+	
+	public ArrayList<Mascota> getAllMascota() {
+		String st = "SELECT * FROM mascotas";
+		ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				mascotas.add(rellenarMascota(rs));
+			}
+			
+			return mascotas;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
