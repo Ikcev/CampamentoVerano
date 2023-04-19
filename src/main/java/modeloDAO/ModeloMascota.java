@@ -1,6 +1,7 @@
 package modeloDAO;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import modeloDTO.Mascota;
@@ -67,5 +68,33 @@ public class ModeloMascota extends Conector{
 		}
 		
 		return false;
+	}
+	
+	
+	public Mascota getMascota(int id) {
+		String st = "SELECT * FROM mascotas WHERE id =?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			Mascota mascota = new Mascota();
+			
+			mascota.setId(rs.getInt("id"));
+			mascota.setNombre(rs.getString("nombre"));
+			mascota.setNumChip(rs.getInt("num_chip"));
+			mascota.setRaza(rs.getString("raza"));
+			
+			return mascota;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }
