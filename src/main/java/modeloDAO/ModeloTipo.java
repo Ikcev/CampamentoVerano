@@ -111,6 +111,7 @@ public class ModeloTipo extends Conector{
 				tipos.add(rellenarTipo(rs));
 			}
 			
+			return tipos;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
