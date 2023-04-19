@@ -43,4 +43,25 @@ public class ModeloTipo extends Conector{
 		
 		return false;
 	}
+	
+	public boolean modiificarTipo(Tipo tipo) {
+		String st = "UPDATE tipos SET nombre=?, cantidad_personas=?, descripcion=? WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setString(1, tipo.getNombre());
+			pst.setInt(2, tipo.getCantidad_personas());
+			pst.setString(3, tipo.getDescripcion());
+			pst.setInt(4, tipo.getId());
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
