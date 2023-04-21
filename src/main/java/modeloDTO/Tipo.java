@@ -6,7 +6,6 @@ public class Tipo {
 	private int cantidad_personas;
 	private String descripcion;
 	
-	
 	public int getId() {
 		return id;
 	}
@@ -31,4 +30,5 @@ public class Tipo {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
 }

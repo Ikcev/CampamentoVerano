@@ -33,6 +33,15 @@ public class ActividadesPorGrupo {
 		this.fecha = fecha;
 	}
 	
-	
+	public ActividadesPorGrupo(Actividad actividad, Grupo grupo, String hora, Date fecha) {
+		super();
+		this.actividad = actividad;
+		this.grupo = grupo;
+		this.hora = hora;
+		this.fecha = fecha;
+	}
+	public ActividadesPorGrupo() {
+		super();
+	}
 	
 }
