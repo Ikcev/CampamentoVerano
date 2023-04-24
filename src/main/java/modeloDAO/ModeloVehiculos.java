@@ -14,7 +14,7 @@ public class ModeloVehiculos extends Conector{
 			
 			pst.setString(1, vehiculo.getMatricula());
 			pst.setString(2, vehiculo.getMarca());
-			pst.setString(1, vehiculo.getModelo());
+			pst.setString(3, vehiculo.getModelo());
 			pst.setString(4, vehiculo.getColor());
 			
 			pst.execute();
@@ -34,6 +34,28 @@ public class ModeloVehiculos extends Conector{
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
 			pst.setInt(1, id);
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	public boolean modificarVehiculo(Vehiculo vehiculo) {
+		String st = "UPDATE vehiculos SET matricula=?, marca=?, modelo=?, color=? WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setString(1, vehiculo.getMatricula());
+			pst.setString(2, vehiculo.getMarca());
+			pst.setString(3, vehiculo.getModelo());
+			pst.setString(4, vehiculo.getColor());
+			pst.setInt(5, vehiculo.getId());
 			
 			pst.execute();
 			return true;
