@@ -57,4 +57,23 @@ public class ModeloLimpieza extends Conector{
 		
 		return false;
 	}
+	
+	public boolean modificarLimpieza(Limpieza limpieza) {
+		String st = "UPDATE FROM limpieza SET id_zona=? WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1,limpieza.getZona().getId());
+			pst.setInt(2, limpieza.getId());
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
