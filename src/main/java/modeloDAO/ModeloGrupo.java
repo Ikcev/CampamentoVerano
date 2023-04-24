@@ -1,7 +1,9 @@
 package modeloDAO;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modeloDTO.Grupo;
 
@@ -59,5 +61,62 @@ public class ModeloGrupo extends Conector{
 		}
 		
 		return false;
+	}
+	
+	public Grupo getGrupo(int id) {
+		String st = "SELECT * FROM grupos WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			Grupo grupo = rellenarGrupo(id, rs);
+			
+			return grupo;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	private Grupo rellenarGrupo(ResultSet rs) throws SQLException {
+		Grupo grupo = new Grupo();
+		
+		grupo.setId(rs.getInt("id"));
+		
+		ModeloMonitor modeloMonitor = new ModeloMonitor();
+		modeloMonitor.conectar();
+		
+		grupo.setMonitor(modeloMonitor.getMonitor(rs.getInt("id_monitor")));
+		
+		modeloMonitor.cerrar();
+		return grupo;
+	}
+	
+	public ArrayList<Grupo> getAllGrupos() {
+		String st = "SELECT * FROM grupos";
+		ArrayList<Grupo> grupos = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				grupos.add(rellenarGrupo(rs));
+			}
+			
+			return grupos;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }
