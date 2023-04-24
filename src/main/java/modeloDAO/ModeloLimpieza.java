@@ -1,7 +1,9 @@
 package modeloDAO;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modeloDTO.Limpieza;
 
@@ -75,5 +77,60 @@ public class ModeloLimpieza extends Conector{
 		}
 		
 		return false;
+	}
+	
+	public Limpieza getLimpieza(int id) {
+		String st = "SELECT * FROM limpieza WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			Limpieza limpieza = rellenarLimpieza(rs);
+			
+			return limpieza;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	private Limpieza rellenarLimpieza(ResultSet rs) throws SQLException {
+		Limpieza limpieza = limpiezaHeredaUsuario(rs.getInt("id"));
+		
+		ModeloZona modeloZona = new ModeloZona();
+		modeloZona.conectar();
+		
+		limpieza.setZona(modeloZona.getZona(rs.getInt("id_zona")));
+		
+		modeloZona.cerrar();
+		return limpieza;
+	}
+	
+	public ArrayList<Limpieza> getAllLimpieza() {
+		String st = "SELECT * FROM limpieza";
+		ArrayList<Limpieza> limpiadores = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				limpiadores.add(rellenarLimpieza(rs));
+			}
+			
+			return limpiadores;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }
