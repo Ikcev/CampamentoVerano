@@ -51,4 +51,23 @@ public class ModeloCliente extends Conector{
 		
 		return false;
 	}
+	
+	public boolean modificarCliente(Cliente cliente) {
+		String st = "UPDATE clientes SET id_grupo WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, cliente.getGrupo().getId());
+			pst.setInt(2, cliente.getId());
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
