@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modeloDTO.Parcela;
-import modeloDTO.Tipo;
 
 public class ModeloParcela extends Conector{
 	public boolean insertarParcela(Parcela parcela) {
