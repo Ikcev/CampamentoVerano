@@ -27,4 +27,22 @@ public class ModeloActividadesGrupo extends Conector{
 		
 		return false;
 	}
+	
+	public boolean eliminarActividadGrupo(int id) {
+		String st = "DELETE FROM actividades_grupo WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
