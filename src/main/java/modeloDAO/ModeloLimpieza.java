@@ -37,6 +37,24 @@ public class ModeloLimpieza extends Conector{
 			e.printStackTrace();
 		}
 		
-		return true;
+		return false;
+	}
+	
+	public boolean eliminarLimpieza(int id) {
+		String st = "DELETE FROM limpieza WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 }
