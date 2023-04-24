@@ -8,17 +8,17 @@ import java.util.ArrayList;
 import modeloDTO.Limpieza;
 
 public class ModeloLimpieza extends Conector{
-	private Limpieza limpiezaHeredaUsuario(int id) {
-		ModeloUsuario modeloUsuario = new ModeloUsuario();
-		modeloUsuario.conectar();
+	private Limpieza limpiezaHeredaPersonal(int id) {
+		ModeloPersonal modeloPersonal = new ModeloPersonal();
+		modeloPersonal.conectar();
 		
-		Limpieza limpieza = (Limpieza) modeloUsuario.getUsuarios(id);
+		Limpieza limpieza = (Limpieza) modeloPersonal.getPersonal(id);
 		
 		return limpieza;
 	}
 	
 	public boolean insertarLimpieza(int id) {
-		Limpieza limpieza = limpiezaHeredaUsuario(id);
+		Limpieza limpieza = limpiezaHeredaPersonal(id);
 		
 		if (limpieza == null) {
 			return false;
@@ -102,7 +102,7 @@ public class ModeloLimpieza extends Conector{
 	}
 
 	private Limpieza rellenarLimpieza(ResultSet rs) throws SQLException {
-		Limpieza limpieza = limpiezaHeredaUsuario(rs.getInt("id"));
+		Limpieza limpieza = limpiezaHeredaPersonal(rs.getInt("id"));
 		
 		ModeloZona modeloZona = new ModeloZona();
 		modeloZona.conectar();
