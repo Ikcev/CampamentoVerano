@@ -9,10 +9,10 @@ import modeloDTO.Monitor;
 
 public class ModeloMonitor extends Conector{
 	private Monitor monitorHeredaUsuario(int id) {
-		ModeloUsuario modeloUsuario = new ModeloUsuario();
-		modeloUsuario.conectar();
+		ModeloPersonal modeloPersonal = new ModeloPersonal();
+		modeloPersonal.conectar();
 		
-		Monitor monitor = (Monitor) modeloUsuario.getUsuarios(id);
+		Monitor monitor = (Monitor) modeloPersonal.getPersonal(id);
 		
 		return monitor;
 	}
