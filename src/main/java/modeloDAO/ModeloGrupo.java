@@ -74,7 +74,7 @@ public class ModeloGrupo extends Conector{
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			
-			Grupo grupo = rellenarGrupo(id, rs);
+			Grupo grupo = rellenarGrupo(rs);
 			
 			return grupo;
 		} catch (SQLException e) {
