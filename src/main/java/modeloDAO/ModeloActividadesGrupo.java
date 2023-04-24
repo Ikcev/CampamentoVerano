@@ -48,26 +48,6 @@ public class ModeloActividadesGrupo extends Conector{
 		return false;
 	}
 	
-//	public boolean modificarActividadGrupo(ActividadesPorGrupo actividadesPorGrupo) {
-//		String st = "UPDATE actividades_grupo SET id_actividad=?, id_grupo=?, fecha=?, hora=? WHERE id=?";
-//		
-//		try {
-//			PreparedStatement pst = super.connection.prepareStatement(st);
-//			
-//			pst.setInt(1, actividadesPorGrupo.getActividad().getId());
-//			pst.setInt(2, actividadesPorGrupo.getGrupo().getId());
-//			pst.setDate(3, new Date(actividadesPorGrupo.getFecha().getTime()));
-//			pst.setString(4, actividadesPorGrupo.getHora());
-//			pst.setInt(5, actividadesPorGrupo.get);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		return false;
-//	}
-// POR HACER
-	
 	public ActividadesPorGrupo getActividadesPorGrupo(ActividadesPorGrupo actividadesPorGrupo) {
 		String st = "SELECT * FROM actividades_grupo WHERE id_actividad=?, id_grupo=?, fecha=?, hora=?";
 		
