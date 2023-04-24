@@ -3,6 +3,7 @@ package modeloDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modeloDTO.Parcela;
 import modeloDTO.Tipo;
@@ -78,10 +79,54 @@ public class ModeloParcela extends Conector{
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			
-			ModeloTipo modeloTipo = new ModeloTipo();
-			modeloTipo.conectar();
+			Parcela parcela = rellenarParcela(rs);
 			
-			Tipo tipo = modeloTipo.getTipo(rs.getInt("id_tipo"));
+			return parcela;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	private Parcela rellenarParcela(ResultSet rs) throws SQLException {
+		ModeloTipo modeloTipo = new ModeloTipo();
+		ModeloZona modeloZona = new ModeloZona();
+		ModeloGrupo modeloGrupo = new ModeloGrupo();
+		
+		modeloTipo.conectar();
+		modeloZona.conectar();
+		modeloGrupo.conectar();
+		
+		Parcela parcela = new Parcela();
+		
+		parcela.setId(rs.getInt("id"));
+		parcela.setTipo(modeloTipo.getTipo(rs.getInt("id_tipo")));
+		parcela.setZona(modeloZona.getZona(rs.getInt("id_zona")));
+		parcela.setGrupo(modeloGrupo.getGrupo(rs.getInt("id_grupo")));
+		parcela.setLimpia(rs.getBoolean("limpia"));
+		
+		modeloTipo.cerrar();
+		modeloZona.cerrar();
+		modeloGrupo.cerrar();
+		
+		return parcela;
+	}
+	
+	public ArrayList<Parcela> getAllParcelas() {
+		String st = "SELECT * FROM parcelas";
+		ArrayList<Parcela> parcelas = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				parcelas.add(rellenarParcela(rs));
+			}
+			
+			return parcelas;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
