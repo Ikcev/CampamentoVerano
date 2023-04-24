@@ -38,4 +38,22 @@ public class ModeloMonitor extends Conector{
 		
 		return false;
 	}
+	
+	public boolean eliminarMonitor(int id) {
+		String st = "DELETE FROM monitores WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
