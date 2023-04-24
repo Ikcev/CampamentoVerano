@@ -41,4 +41,23 @@ public class ModeloGrupo extends Conector{
 		
 		return false;
 	}
+	
+	public boolean modificarGrupo(Grupo grupo) {
+		String st = "UPDATE grupos SET id_monito=? WHERE id=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, grupo.getMonitor().getId());
+			pst.setInt(2, grupo.getId());
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
