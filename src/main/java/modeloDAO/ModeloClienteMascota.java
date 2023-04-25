@@ -24,4 +24,23 @@ public class ModeloClienteMascota extends Conector{
 		
 		return false;
 	}
+	
+	public boolean eliminarClienteMascota(ClienteMascota clienteMascota) {
+		String st = "DELETE FROM cliente_mascota WHERE id_cliente=? and id_mascota=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, clienteMascota.getCliente().getId());
+			pst.setInt(2, clienteMascota.getMascota().getId());
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
