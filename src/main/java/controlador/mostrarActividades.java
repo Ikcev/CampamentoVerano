@@ -41,7 +41,7 @@ public class mostrarActividades extends HttpServlet {
 		
 		request.setAttribute("actividades", actividades);
 		
-		request.getRequestDispatcher("actividades/actividades.jsp").forward(request, response);
+		request.getRequestDispatcher("actividades.jsp").forward(request, response);
 	}
 
 	/**
